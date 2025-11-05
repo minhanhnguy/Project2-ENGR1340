@@ -1,0 +1,1107 @@
+/* ==========================================
+   CONNECT PLATFORM - COMPLETE STYLESHEET
+   ENGR 1340 - Project 2
+   
+   This stylesheet contains ALL styles for the Connect Platform website.
+   It includes styles for 4 pages:
+   1. Landing Page (index.html)
+   2. Student Dashboard (student-dashboard.html)
+   3. Company Dashboard (company-dashboard.html)
+   4. Project Listings (projects.html)
+   
+   HOW TO USE THIS FILE:
+   - Read the comments to understand what each style does
+   - Look for TODO comments to see where you need to customize
+   - Follow the HINT comments for syntax guidance
+   - Use the EXAMPLE comments to see how properties work
+   
+   CSS ORGANIZATION:
+   1. CSS Variables (Color Scheme)
+   2. Base Styles & Reset
+   3. Layout Utilities
+   4. Navigation Bar
+   5. Buttons
+   6. Landing Page Styles
+   7. Dashboard Common Styles
+   8. Student Dashboard Specific
+   9. Company Dashboard Specific
+   10. Project Listings Specific
+   11. Responsive Design (Media Queries)
+   12. Accessibility Enhancements
+   13. Print Styles
+   ========================================== */
+
+/* ==========================================
+   1. CSS VARIABLES (COLOR SCHEME)
+   ==========================================  */
+:root {
+    /* PRIMARY COLORS - Main brand colors used throughout the site */
+    --primary-color: #2563eb;
+    /* Blue - Used for main actions, links, emphasis */
+    --secondary-color: #7c3aed;
+    /* Purple - Used for secondary actions, accents */
+
+    /* SOFT BLUE WASH (for subtle gradients) */
+    --wash-1: rgba(37, 99, 235, 0.10);
+    /* blue-600 @10% */
+    --wash-2: rgba(14, 165, 233, 0.10);
+    /* sky-500 @10% */
+    --wash-3: rgba(124, 58, 237, 0.08);
+    /* violet-600 @8% */
+
+    /* TEXT COLORS - For readability and hierarchy */
+    --text-dark: #1f2937;
+    /* Dark gray - Main body text, headings */
+    --text-light: #6b7280;
+    /* Medium gray - Secondary text, descriptions */
+
+    /* BACKGROUND COLORS - For page sections and containers */
+    --background: #ffffff;
+    /* White - Main page background */
+    --background-alt: #f9fafb;
+    /* Light gray - Alternate sections, cards */
+
+    /* BORDER AND DIVIDER COLORS */
+    --border-color: #e5e7eb;
+    /* Light gray - Borders, dividers, outlines */
+
+    /* STATUS COLORS - For feedback and states */
+    --success-color: #10b981;
+    /* Green - Success messages, completed items */
+    --error-color: #ef4444;
+    /* Red - Error messages, warnings */
+    --warning-color: #f59e0b;
+    /* Orange - Warning states */
+    --info-color: #3b82f6;
+    /* Blue - Information messages */
+
+    /* SHADOW VALUES - For depth and elevation */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.10);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10);
+
+    /* SPACING VALUES - For consistent spacing */
+    --spacing-xs: 0.25rem;
+    /* 4px */
+    --spacing-sm: 0.5rem;
+    /* 8px */
+    --spacing-md: 1rem;
+    /* 16px */
+    --spacing-lg: 1.5rem;
+    /* 24px */
+    --spacing-xl: 2rem;
+    /* 32px */
+
+    /* BORDER RADIUS - For rounded corners (updated per request) */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 12px;
+    /* was 8px; now 12px */
+    --radius-full: 9999px;
+    /* Perfect circle / pill */
+
+    /* TRANSITION SPEED - For smooth animations */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.6s;
+
+    /* HERO ANIMATION (subtle) */
+    --hero-anim-duration: 22s;
+    --nav-height: 72px;
+}
+
+/* ==========================================
+   2. BASE STYLES & RESET
+   ==========================================  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Use Inter (UI) per Google Fonts; graceful fallbacks */
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background);
+    overflow-x: hidden;
+}
+
+/* Headings use Playfair for a touch of contrast */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--text-dark);
+    font-family: "Playfair Display", Georgia, serif;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-normal) ease;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* ==========================================
+   3. LAYOUT UTILITIES
+   ==========================================  */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.section {
+    padding: 4rem 0;
+}
+
+/* ==========================================
+   4. NAVIGATION BAR
+   ==========================================  */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo img {
+    height: 24px;
+    /* adjust if the logo is too big/small */
+    width: auto;
+    display: block;
+    border-radius: 2px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.navbar {
+    background-color: var(--background);
+    box-shadow: var(--shadow-sm);
+    padding: 1rem 0;
+    z-index: 1000;
+    position: sticky;
+    top: 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin: 0;
+}
+
+.logo a {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color var(--transition-normal) ease;
+    padding: 0.5rem 0;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.nav-links a[aria-current="page"] {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.3rem;
+}
+
+.btn-login {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    color: var(--primary-color);
+    transition: all var(--transition-normal) ease;
+}
+
+.btn-login:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Header CTAs container (Browse + Login) */
+.header-ctas {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* matches your request */
+}
+
+/* ===== Mobile burger button (hidden on desktop) ===== */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 1.25rem; /* ≈ 20px */
+  line-height: 1;
+  padding: 0.4rem 0.6rem;
+  color: var(--text-dark);
+}
+.mobile-menu-btn:hover {
+  border-color: var(--primary-color);
+}
+.mobile-menu-btn:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* ===== Phone layout (burger closed by default) ===== */
+@media (max-width: 768px) {
+  /* Keep header row layout on phones (logo + burger aligned) */
+  .navbar .container {
+    flex-direction: row !important; /* overrides your 968px rule */
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Show the burger button on phones */
+  .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; }
+
+  /* Hide nav links + header CTAs until opened */
+  .nav-links,
+  .header-ctas {
+    display: none;
+    width: 100%;
+  }
+
+  /* When navbar is "open", show them stacked */
+  .navbar.open .nav-links,
+  .navbar.open .header-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: left;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  /* Mobile-friendly hit areas */
+  .nav-links a { padding: 0.5rem 0; }
+
+  /* Make buttons full-width in the opened panel */
+  .header-ctas .btn { width: 100%; }
+}
+
+
+/* ==========================================
+   5. BUTTONS
+   ==========================================  */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-full);
+    /* pill buttons per request */
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal) ease;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+    background-color: #6d28d9;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-danger {
+    background-color: var(--error-color);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.btn-full {
+    width: 100%;
+    display: block;
+}
+
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ==========================================
+   6. LANDING PAGE STYLES (index.html)
+   ==========================================  */
+
+/* ---- HERO SECTION ---- */
+
+/* gentle motion of gradient background */
+@keyframes heroShift {
+    0% {
+        background-position: 0px 0px, 0px 0px, 0px 0px, 0 0;
+    }
+
+    50% {
+        background-position: -30px -20px, 20px -10px, -15px 25px, 0 0;
+    }
+
+    100% {
+        background-position: 0px 0px, 0px 0px, 0px 0px, 0 0;
+    }
+}
+
+.hero {
+  animation: heroShift var(--hero-anim-duration) ease-in-out infinite;
+  min-height: calc(100vh - var(--nav-height));
+  display: grid;
+  align-items: center;
+
+  /* very light base + soft color washes (no solid blue fill) */
+  background:
+    radial-gradient(1100px 520px at 80% 12%, var(--wash-1), rgba(255,255,255,0) 60%),
+    radial-gradient(900px 460px at 12% 88%, var(--wash-2), rgba(255,255,255,0) 58%),
+    radial-gradient(700px 420px at 18% 24%, var(--wash-3), rgba(255,255,255,0) 56%),
+    linear-gradient(180deg, #f7fbff 0%, #f9f7ff 100%);
+}
+
+/* Two-column grid */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    align-items: center;
+    gap: 3rem;
+}
+
+/* Left: text */
+.hero h1 {
+    /* keep same intent as .hero h2 from original */
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    /* mild for readability on wash */
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 640px;
+    opacity: 0.95;
+}
+
+.hero-visual {
+    min-height: 320px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.06) 100%);
+    box-shadow: var(--shadow-lg);
+}
+
+.hero h1,
+.hero .hero-description {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+
+section[data-snap="section"] {
+    scroll-margin-top: var(--nav-height);
+}
+
+/* CTA group unchanged (from original) */
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* ---- VALUE PROPOSITIONS ---- */
+.value-propositions {
+    padding: 4rem 0;
+    background-color: var(--background-alt);
+}
+
+.value-propositions h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: var(--text-dark);
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.column {
+    padding: 2rem;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.column h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.benefits-list li {
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+}
+
+.benefits-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--success-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* ---- HOW IT WORKS ---- */
+.how-it-works {
+    padding: 4rem 0;
+    background-color: var(--background);
+}
+
+.how-it-works h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: var(--text-dark);
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.step {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--background);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
+}
+
+.step:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.step-number {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: var(--radius-full);
+    line-height: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.step h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.step p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* ==========================================
+   7. DASHBOARD COMMON STYLES
+   ==========================================  */
+.dashboard-main {
+    min-height: calc(100vh - 200px);
+    padding: 2rem 0;
+    background-color: var(--background-alt);
+}
+
+/* ==========================================
+   8. STUDENT DASHBOARD SPECIFIC STYLES
+   ==========================================  */
+/* (future use) */
+
+/* ==========================================
+   9. COMPANY DASHBOARD SPECIFIC STYLES
+   ==========================================  */
+/* (future use) */
+
+/* ==========================================
+   10. PROJECT LISTINGS PAGE STYLES
+   ==========================================  */
+.projects-main {
+    background-color: var(--background-alt);
+    min-height: calc(100vh - 200px);
+    padding: 2rem 0;
+}
+
+.page-header {
+    background-color: var(--background);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.page-header h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.page-description {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.project-count {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.projects-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.filters-sidebar {
+    background-color: var(--background);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 90px;
+}
+
+.filters-sidebar h3 {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.75rem;
+}
+
+.filter-group {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.filter-group:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.filter-group h4 {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.projects-listings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-listing-card {
+    background-color: var(--background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease, border-color var(--transition-normal) ease;
+}
+
+.project-listing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.card-header h3 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.3;
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+.project-meta .duration {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* ==========================================
+   PAGINATION (kept from original comments)
+   ==========================================  */
+/* (left as-is in your original; not used on landing) */
+
+/* ==========================================
+   FOOTER
+   ==========================================  */
+.site-footer {
+    background-color: var(--text-dark);
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #fff;
+    font-size: 0.9rem;
+    transition: color var(--transition-normal) ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.copyright {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    margin: 0;
+}
+
+/* ==========================================
+   11. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ==========================================  */
+@media (max-width: 968px) {
+    .navbar .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero {
+        padding: 4rem 0;
+        min-height: 60vh;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+        min-height: 200px;
+    }
+
+    .two-column,
+    .dashboard-grid,
+    .company-grid,
+    .projects-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .filters-sidebar {
+        position: static;
+    }
+
+    .company-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+    }
+
+    .projects-listings {
+        grid-template-columns: 1fr;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 3rem 0;
+    }
+
+    .hero h1 {
+        font-size: 1.7rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+    }
+
+    .page-header h2 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    .project-listing-card {
+        padding: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .projects-listings {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+/* ==========================================
+   12. ACCESSIBILITY ENHANCEMENTS
+   ==========================================  */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+    border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+body.keyboard-navigation *:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Screen reader utility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ==========================================
+   14. DIALOG / MODAL STYLES (Login)
+   ========================================== */
+
+/* Native <dialog> element */
+dialog#loginDialog {
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: 0;
+    width: min(520px, 92vw);
+    box-shadow: var(--shadow-lg);
+    background: var(--background);
+    color: var(--text-dark);
+}
+
+/* Backdrop behind the dialog when open */
+dialog#loginDialog::backdrop {
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
+}
+
+/* Modal header: title + close button row */
+.login-modal-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Modal title */
+.login-modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-family: "Playfair Display", Georgia, serif;
+    /* match headings */
+}
+
+/* Modal body content */
+.login-modal-body {
+    padding: 1.25rem;
+}
+
+/* Close “×” button */
+.login-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    color: var(--text-dark);
+    transition: background-color var(--transition-fast) ease;
+}
+
+.login-close-btn:hover {
+    background-color: var(--background-alt);
+}
+
+/* ==========================================
+   END OF STYLESHEET 
+   ========================================== */
