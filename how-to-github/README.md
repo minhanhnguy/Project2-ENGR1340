@@ -16,7 +16,7 @@ code .
 ```
 
 It should look like this after running the previous command:
-![After open Vscode]()
+![After open Vscode](AfterOpenVscode.png)
 
 ---
 
