@@ -18,6 +18,7 @@ code .
 ---
 
 ## 2. Push your changes to github 
+Inside your VsCode terminal run these command below:
 
 Stage everything:
 ```bash
