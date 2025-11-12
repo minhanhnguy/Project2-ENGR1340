@@ -21,6 +21,10 @@ It should look like this after running the previous command:
 ---
 
 ## 2. Push your changes to github 
+After you made some changes in your local code, you can push to github using the terminal inside VsCode. It should look like this:
+
+![Terminal In Vscode](TerminalInVsCode.png)
+
 Inside your VsCode terminal run these command below:
 
 Stage everything:
