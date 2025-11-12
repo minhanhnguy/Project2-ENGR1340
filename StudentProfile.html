@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom hover animations */
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    .follow-btn:hover {
+      background-color: #4f46e5;
+      color: white;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-6 flex flex-col md:flex-row items-center md:items-start justify-between">
+    <!-- Left: Profile -->
+    <div class="flex flex-col items-center md:items-start md:flex-row gap-6">
+      <img src="https://i.pravatar.cc/150?img=5" alt="Profile Picture" class="w-32 h-32 rounded-full shadow-lg mb-4 md:mb-0">
+      <div class="text-center md:text-left space-y-1">
+        <h1 class="text-3xl font-bold">Laura Ferrer</h1>
+        <p class="text-gray-600">Computer Science Student</p>
+        <button class="mt-2 px-4 py-2 rounded-lg border border-indigo-500 text-indigo-500 font-semibold follow-btn transition-colors duration-300">Follow</button>
+      </div>
+    </div>
+
+    <!-- Right: Quick Info -->
+    <div class="mt-4 md:mt-0 bg-indigo-50 p-4 rounded-xl shadow-md space-y-3 w-full md:w-64">
+      <div>
+        <label class="block font-medium text-gray-700 mb-1">Major</label>
+        <input type="text" placeholder="Computer Science" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <div>
+        <label class="block font-medium text-gray-700 mb-1">Graduation Year</label>
+        <input type="text" placeholder="2026" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <div>
+        <label class="block font-medium text-gray-700 mb-1">Minors / Concentrations</label>
+        <input type="text" placeholder="Mathematics, AI" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto mt-8 p-4 space-y-12">
+
+    <!-- About Section -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">About Me</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Hello! I’m a senior high school student majoring in Computer Science. I love building interactive web projects, exploring new technologies, and sharing ideas with others.
+      </p>
+    </section>
+
+    <!-- Skills Section -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Skills</h2>
+      <div class="flex flex-wrap gap-4">
+        <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-medium">HTML</span>
+        <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-medium">CSS</span>
+        <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-medium">JavaScript</span>
+        <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-medium">Python</span>
+        <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-medium">React</span>
+        <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full font-medium">Tailwind CSS</span>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Projects</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow-md transition-transform duration-300 card">
+          <h3 class="text-xl font-semibold mb-2">Social Media Growth Tracker</h3>
+          <p class="text-gray-600 mb-3">A web app to visualize social media engagement with charts, regression calculations, and Riemann sums.</p>
+          <a href="#" class="text-indigo-500 font-medium hover:underline">View Project</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md transition-transform duration-300 card">
+          <h3 class="text-xl font-semibold mb-2">Personal Portfolio</h3>
+          <p class="text-gray-600 mb-3">A responsive portfolio website built with Tailwind CSS and React, showcasing projects and skills.</p>
+          <a href="#" class="text-indigo-500 font-medium hover:underline">View Project</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md transition-transform duration-300 card">
+          <h3 class="text-xl font-semibold mb-2">Chemistry Exam Cram Tool</h3>
+          <p class="text-gray-600 mb-3">An interactive tool to study chemistry efficiently, including flashcards, equations, and interactive quizzes.</p>
+          <a href="#" class="text-indigo-500 font-medium hover:underline">View Project</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personal Information Section -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Personal Information</h2>
+      <form class="bg-white p-6 rounded-xl shadow-md space-y-4">
+        <div>
+          <label class="block font-medium text-gray-700 mb-1">Full Name</label>
+          <input type="text" placeholder="Laura Ferrer" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div>
+          <label class="block font-medium text-gray-700 mb-1">Email</label>
+          <input type="email" placeholder="laura@example.com" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div>
+          <label class="block font-medium text-gray-700 mb-1">Phone Number</label>
+          <input type="tel" placeholder="+1 234 567 890" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div>
+          <label class="block font-medium text-gray-700 mb-1">Address</label>
+          <input type="text" placeholder="123 Main St, City, Country" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+      </form>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Projects</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow-md transition-transform duration-300 card">
+          <h3 class="text-xl font-semibold mb-2">Social Media Growth Tracker</h3>
+          <p class="text-gray-600 mb-3">A web app to visualize social media engagement with charts, regression calculations, and Riemann sums.</p>
+          <a href="#" class="text-indigo-500 font-medium hover:underline">View Project</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md transition-transform duration-300 card">
+          <h3 class="text-xl font-semibold mb-2">Personal Portfolio</h3>
+          <p class="text-gray-600 mb-3">A responsive portfolio website built with Tailwind CSS and React, showcasing projects and skills.</p>
+          <a href="#" class="text-indigo-500 font-medium hover:underline">View Project</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md transition-transform duration-300 card">
+          <h3 class="text-xl font-semibold mb-2">Chemistry Exam Cram Tool</h3>
+          <p class="text-gray-600 mb-3">An interactive tool to study chemistry efficiently, including flashcards, equations, and interactive quizzes.</p>
+          <a href="#" class="text-indigo-500 font-medium hover:underline">View Project</a>
+        </div>
+      </div>
+    </section>
+
+   
+    <!-- Company Requirements Section -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Company Requirements</h2>
+      <form class="bg-white p-6 rounded-xl shadow-md space-y-4">
+        <div class="flex items-center">
+          <input type="checkbox" id="req1" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="req1" class="ml-3 text-gray-700">Completed internship</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="req2" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="req2" class="ml-3 text-gray-700">Portfolio of projects</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="req3" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="req3" class="ml-3 text-gray-700">GPA above 3.5</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="req4" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="req4" class="ml-3 text-gray-700">Teamwork experience</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="req5" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="req5" class="ml-3 text-gray-700">Leadership experience</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="req6" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="req6" class="ml-3 text-gray-700">Hackathon participation</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="req7" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="req7" class="ml-3 text-gray-700">Open-source contributions</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="req8" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="req8" class="ml-3 text-gray-700">Relevant coursework</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="req9" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="req9" class="ml-3 text-gray-700">Strong problem-solving skills</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="req10" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="req10" class="ml-3 text-gray-700">Excellent communication skills</label>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-gray-500">
+    &copy; 2025 Laura Ferrer. All rights reserved.
+  </footer>
+
+</body>
+</html>
+
+
