@@ -42,4 +42,11 @@ Push to github
 git push
 ```
 
+## 3. Pull github code to your local machine
+If you need to update your local machine code to the newest version on github. You can use this command also inside the VsCode terminal.
+
+```bash
+git pull
+```
+
 ---
