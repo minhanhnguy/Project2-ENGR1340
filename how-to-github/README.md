@@ -15,6 +15,9 @@ Open Vscode by running the command below
 code .
 ```
 
+It should look like this after running the previous command:
+![After open Vscode]()
+
 ---
 
 ## 2. Push your changes to github 
