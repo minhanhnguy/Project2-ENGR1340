@@ -1,193 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pathway | Company Dashboard</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body id="top">
-    <!-- =============================
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pathway | Company Dashboard</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body id="top">
+  <!-- =============================
          NAVIGATION BAR
     ============================== -->
-    <header class="navbar" role="banner">
-      <div class="container" role="navigation" aria-label="Primary">
-        <button
-          class="mobile-menu-btn"
-          id="mobileMenuBtn"
-          aria-controls="primary-nav"
-          aria-expanded="false"
-          aria-label="Toggle menu"
-        >
-          ☰
-        </button>
-        <div class="logo">
-          <img src="logo.png" alt="Pathway logo" />
-          <h1><a href="#top">Pathway</a></h1>
-        </div>
-        <nav class="nav-links" id="primary-nav">
-          <a href="index.html">Home</a>
-          <a href="#about">About</a>
-          <a href="#students">For Students</a>
-          <a href="#companies" aria-current="page">For Companies</a>
-        </nav>
-        <div class="header-ctas">
-          <a class="btn btn-outline btn-small" href="projects.html"
-            >Browse Projects</a
-          >
-          <button class="btn btn-primary btn-small" id="openLogin">Login</button>
-        </div>
+  <header class="navbar" role="banner">
+    <div class="container" role="navigation" aria-label="Primary">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-controls="primary-nav" aria-expanded="false"
+        aria-label="Toggle menu">
+        ☰
+      </button>
+      <div class="logo">
+        <img src="logo.png" alt="Pathway logo" />
+        <h1><a href="#top">Pathway</a></h1>
       </div>
-    </header>
+      <nav class="nav-links" id="primary-nav">
+        <a href="index.html">Home</a>
+        <a href="#about">About</a>
+        <a href="#students">For Students</a>
+        <a href="#companies" aria-current="page">For Companies</a>
+      </nav>
+      <div class="header-ctas">
+        <a class="btn btn-outline btn-small" href="projects.html">Browse Projects</a>
+        <button class="btn btn-primary btn-small" id="openLogin">Login</button>
+      </div>
+    </div>
+  </header>
 
-    <!-- =============================
+  <!-- =============================
          HERO SECTION
     ============================== -->
-    <section class="hero">
-      <div class="hero-grid container">
-        <div class="hero-text">
-          <h2>Welcome, Pathway</h2>
-          <p>
-            Manage your company profile, showcase projects, and connect with
-            student innovators directly through your Pathway dashboard.
-          </p>
-          <a href="#profile" class="btn btn-primary">View Your Profile</a>
-        </div>
-        <div class="hero-image">
-          <img src="dashboard-illustration.png" alt="Company dashboard preview" />
+  <section class="hero">
+    <div class="hero-grid container">
+      <div class="hero-text">
+        <h2>Welcome, Pathway</h2>
+        <p>
+          Manage your company profile, showcase projects, and connect with
+          student innovators directly through your Pathway dashboard.
+        </p>
+        <a href="#profile" class="btn btn-primary">View Your Profile</a>
+      </div>
+      <div class="hero-image">
+        <img src="dashboard-illustration.png" alt="Company dashboard preview" />
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+         MAIN DASHBOARD LAYOUT
+    ============================== -->
+  <main class="dashboard-layout container">
+    <!-- ===== FILTER SIDEBAR ===== -->
+    <aside class="filters-sidebar">
+      <h3>Filters</h3>
+      <div class="filter-group">
+        <label for="industry">Industry</label>
+        <select id="industry" name="industry">
+          <option value="">All Industries</option>
+          <option value="engineering">Engineering</option>
+          <option value="design">Design</option>
+          <option value="software">Software</option>
+          <option value="marketing">Marketing</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="location">Location</label>
+        <select id="location" name="location">
+          <option value="">All Locations</option>
+          <option value="remote">Remote</option>
+          <option value="on-site">On-Site</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="type">Project Type</label>
+        <select id="type" name="type">
+          <option value="">All Types</option>
+          <option value="internship">Internship</option>
+          <option value="research">Research</option>
+          <option value="collaboration">Collaboration</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary btn-small">Apply Filters</button>
+    </aside>
+
+    <!-- ===== DASHBOARD CONTENT ===== -->
+    <section class="dashboard-main">
+      <!-- COMPANY PROFILE CARD -->
+      <div class="profile-card" id="profile">
+        <img src="company-logo.png" alt="Pathway company logo" class="profile-logo" />
+        <h2>Pathway</h2>
+        <p class="company-tagline">
+          Empowering connections between students and industry leaders.
+        </p>
+      </div>
+
+      <!-- CONTACT INFO -->
+      <div class="info-card">
+        <h3>Company Information</h3>
+        <ul>
+          <li><strong>Recruiter:</strong> Jane Doe</li>
+          <li><strong>Role:</strong> Talent Acquisition Manager</li>
+          <li><strong>Email:</strong> jane.doe@pathway.com</li>
+          <li><strong>Phone:</strong> (555) 123-4567</li>
+        </ul>
+      </div>
+
+      <!-- ABOUT SECTION -->
+      <div class="info-card">
+        <h3>About Pathway</h3>
+        <p>
+          Pathway is dedicated to creating meaningful bridges between companies and
+          emerging talent. Our mission is to provide students with accessible,
+          hands-on project experience while giving organizations a streamlined
+          platform to discover fresh perspectives and innovative solutions.
+        </p>
+      </div>
+
+      <!-- PROJECTS SECTION -->
+      <div class="info-card">
+        <h3>Current Projects</h3>
+        <div class="projects-grid">
+          <article class="project-card">
+            <h4>UX Design Internship</h4>
+            <p>
+              Collaborate with the Pathway design team to enhance student
+              dashboard usability.
+            </p>
+            <span class="badge">Remote</span>
+          </article>
+
+          <article class="project-card">
+            <h4>Software Integration Project</h4>
+            <p>
+              Work with engineers to optimize backend API connections between
+              student and company dashboards.
+            </p>
+            <span class="badge">On-Site</span>
+          </article>
         </div>
       </div>
     </section>
+  </main>
 
-    <!-- =============================
-         MAIN DASHBOARD LAYOUT
-    ============================== -->
-    <main class="dashboard-layout container">
-      <!-- ===== FILTER SIDEBAR ===== -->
-      <aside class="filters-sidebar">
-        <h3>Filters</h3>
-        <div class="filter-group">
-          <label for="industry">Industry</label>
-          <select id="industry" name="industry">
-            <option value="">All Industries</option>
-            <option value="engineering">Engineering</option>
-            <option value="design">Design</option>
-            <option value="software">Software</option>
-            <option value="marketing">Marketing</option>
-          </select>
-        </div>
-
-        <div class="filter-group">
-          <label for="location">Location</label>
-          <select id="location" name="location">
-            <option value="">All Locations</option>
-            <option value="remote">Remote</option>
-            <option value="on-site">On-Site</option>
-          </select>
-        </div>
-
-        <div class="filter-group">
-          <label for="type">Project Type</label>
-          <select id="type" name="type">
-            <option value="">All Types</option>
-            <option value="internship">Internship</option>
-            <option value="research">Research</option>
-            <option value="collaboration">Collaboration</option>
-          </select>
-        </div>
-
-        <button class="btn btn-primary btn-small">Apply Filters</button>
-      </aside>
-
-      <!-- ===== DASHBOARD CONTENT ===== -->
-      <section class="dashboard-main">
-        <!-- COMPANY PROFILE CARD -->
-        <div class="profile-card" id="profile">
-          <img src="company-logo.png" alt="Pathway company logo" class="profile-logo" />
-          <h2>Pathway</h2>
-          <p class="company-tagline">
-            Empowering connections between students and industry leaders.
-          </p>
-        </div>
-
-        <!-- CONTACT INFO -->
-        <div class="info-card">
-          <h3>Company Information</h3>
-          <ul>
-            <li><strong>Recruiter:</strong> Jane Doe</li>
-            <li><strong>Role:</strong> Talent Acquisition Manager</li>
-            <li><strong>Email:</strong> jane.doe@pathway.com</li>
-            <li><strong>Phone:</strong> (555) 123-4567</li>
-          </ul>
-        </div>
-
-        <!-- ABOUT SECTION -->
-        <div class="info-card">
-          <h3>About Pathway</h3>
-          <p>
-            Pathway is dedicated to creating meaningful bridges between companies and
-            emerging talent. Our mission is to provide students with accessible,
-            hands-on project experience while giving organizations a streamlined
-            platform to discover fresh perspectives and innovative solutions.
-          </p>
-        </div>
-
-        <!-- PROJECTS SECTION -->
-        <div class="info-card">
-          <h3>Current Projects</h3>
-          <div class="projects-grid">
-            <article class="project-card">
-              <h4>UX Design Internship</h4>
-              <p>
-                Collaborate with the Pathway design team to enhance student
-                dashboard usability.
-              </p>
-              <span class="badge">Remote</span>
-            </article>
-
-            <article class="project-card">
-              <h4>Software Integration Project</h4>
-              <p>
-                Work with engineers to optimize backend API connections between
-                student and company dashboards.
-              </p>
-              <span class="badge">On-Site</span>
-            </article>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- =============================
+  <!-- =============================
          FOOTER
     ============================== -->
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div class="footer-about">
-          <h3>Pathway</h3>
-          <p>
-            Connecting students and companies through meaningful, real-world
-            experiences.
-          </p>
-        </div>
-        <div class="footer-links">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#top">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#students">For Students</a></li>
-            <li><a href="#companies">For Companies</a></li>
-          </ul>
-        </div>
-        <div class="footer-contact">
-          <h4>Contact</h4>
-          <p>Email: info@pathway.com</p>
-          <p>Phone: (555) 987-6543</p>
-        </div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <h3>Pathway</h3>
+        <p>
+          Connecting students and companies through meaningful, real-world
+          experiences.
+        </p>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Pathway. All rights reserved.</p>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#students">For Students</a></li>
+          <li><a href="#companies">For Companies</a></li>
+        </ul>
       </div>
-    </footer>
-  </body>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: info@pathway.com</p>
+        <p>Phone: (555) 987-6543</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Pathway. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
 </html>
