@@ -1042,65 +1042,226 @@ body.keyboard-navigation *:focus {
     border-width: 0;
 }
 
+/* ===== Mobile left drawer (burger) ===== */
+.mobile-drawer {
+  position: fixed;
+  inset: 0 auto 0 0;                 /* left side */
+  width: min(86vw, 360px);
+  max-width: 100%;
+  background: var(--background);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-lg);
+  border-right: 1px solid var(--border-color);
+  transform: translateX(-100%);
+  transition: transform var(--transition-normal) ease;
+  z-index: 10002;                    /* above navbar */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.75rem 0.75rem 1rem;
+}
+.mobile-drawer.open { transform: translateX(0); }
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17,24,39,0.45);
+  backdrop-filter: blur(2px);
+  z-index: 10001;
+  opacity: 0;
+  transition: opacity var(--transition-fast) ease;
+}
+.drawer-backdrop.show { opacity: 1; }
+.drawer-backdrop[hidden] { display: none !important; }
+
+.mobile-drawer__header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.25rem 0.25rem 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background:
+    radial-gradient(700px 360px at 95% 30%, var(--wash-3), rgba(255,255,255,0) 60%),
+    radial-gradient(800px 420px at 10% 0%, var(--wash-1), rgba(255,255,255,0) 55%);
+  border-radius: 0 0 var(--radius-md) 0;
+}
+.mobile-drawer__close {
+  background: transparent; border: none; font-size: 1.35rem; line-height: 1;
+  padding: 0.25rem 0.5rem; border-radius: var(--radius-sm); color: var(--text-dark);
+}
+.mobile-drawer__close:hover { background: var(--background-alt); }
+
+.mobile-drawer__nav {
+  display: grid; gap: 0.25rem; padding: 0.5rem 0.25rem 0;
+}
+.mobile-drawer__nav a {
+  display: block;
+  padding: 0.6rem 0.65rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  color: var(--text-dark);
+}
+.mobile-drawer__nav a:hover { background: var(--background-alt); color: var(--primary-color); }
+
+.mobile-drawer__ctas {
+  margin-top: auto;
+  display: grid; gap: 0.5rem;
+  padding: 0.5rem 0.25rem 0.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Disable the old stacked mobile menu approach and show burger instead */
+@media (max-width: 768px) {
+  .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; }
+  .nav-links, .header-ctas { display: none !important; } /* hide header links on phones */
+}
+
+/* Prevent background scroll when drawer is open */
+body.drawer-open { overflow: hidden; }
+
 /* ==========================================
-   14. DIALOG / MODAL STYLES (Login)
+   14. DIALOG / MODAL STYLES 
    ========================================== */
 
-/* Native <dialog> element */
+/* Prevent background scroll while open (JS toggles this) */
+body.modal-open { overflow: hidden; }
+
+/* Native <dialog> element — rock-solid centering + top stacking */
 dialog#loginDialog {
-    border: none;
-    border-radius: var(--radius-lg);
-    padding: 0;
-    width: min(520px, 92vw);
-    box-shadow: var(--shadow-lg);
-    background: var(--background);
-    color: var(--text-dark);
+  border: none;
+  padding: 0;
+  width: min(520px, 92vw);
+  max-height: min(88vh, 720px);       /* keep inside small screens */
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  background: var(--background);
+  color: var(--text-dark);
+
+  /* Hard-center + above navbar */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10001;                     /* navbar uses ~1000 */
+
+  /* animation */
+  opacity: 0;
+  animation: modalIn 180ms ease-out forwards;
 }
 
-/* Backdrop behind the dialog when open */
 dialog#loginDialog::backdrop {
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(2px);
+  background: rgba(17, 24, 39, 0.45);
+  backdrop-filter: blur(3px);
 }
 
-/* Modal header: title + close button row */
+/* Re-run animation reliably when reopened */
+dialog#loginDialog[open] { animation: modalIn 180ms ease-out forwards; }
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translate(-50%, -46%) scale(0.98); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Header — gentle wash */
 .login-modal-header {
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:
+    radial-gradient(800px 420px at 10% 0%, var(--wash-1), rgba(255,255,255,0) 55%),
+    radial-gradient(700px 360px at 95% 30%, var(--wash-3), rgba(255,255,255,0) 60%);
 }
 
-/* Modal title */
 .login-modal-title {
-    margin: 0;
-    font-size: 1.25rem;
-    font-family: "Playfair Display", Georgia, serif;
-    /* match headings */
+  margin: 0;
+  font-size: 1.35rem;
+  font-family: "Playfair Display", Georgia, serif;
 }
 
-/* Modal body content */
+/* Body — make it scroll independently if needed */
 .login-modal-body {
-    padding: 1.25rem;
+  padding: 1.25rem 1.25rem 1rem;
+  display: grid;
+  gap: var(--spacing-md);
+  overflow: auto;                     /* prevents the dialog from growing off-screen */
 }
 
-/* Close “×” button */
+/* Form layout adopts your scale + full-width controls */
+.project-form {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.project-form .form-group label {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.project-form .form-group input {
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--background-alt);
+  color: var(--text-dark);
+  transition:
+    border-color var(--transition-fast) ease,
+    box-shadow var(--transition-fast) ease,
+    background-color var(--transition-fast) ease;
+}
+
+.project-form .form-group input::placeholder { color: #9ca3af; }
+
+.project-form .form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+  background: #fff;
+}
+
+/* Buttons already pick up brand styles; nudge spacing */
+.project-form .btn-full { margin-top: 0.25rem; }
+
+/* Helper links row */
+.login-footer-links {
+  margin-top: 0.25rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--text-light);
+}
+
+.login-footer-links a {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.login-footer-links a:hover { text-decoration: underline; }
+
+/* Close button */
 .login-close-btn {
-    background: transparent;
-    border: none;
-    font-size: 1.25rem;
-    line-height: 1;
-    padding: 0.25rem 0.5rem;
-    cursor: pointer;
-    border-radius: var(--radius-sm);
-    color: var(--text-dark);
-    transition: background-color var(--transition-fast) ease;
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-dark);
+  transition: background-color var(--transition-fast) ease;
+}
+.login-close-btn:hover { background-color: var(--background-alt); }
+
+/* Optional: center the header title while keeping the close button at the edge */
+ /* .login-modal-header { justify-content: center; }
+    .login-close-btn { position: absolute; right: 0.5rem; } */
+
+@media (max-width: 480px) {
+  .login-modal-title { font-size: 1.15rem; }
+  .login-modal-body { padding: 1rem; }
 }
 
-.login-close-btn:hover {
-    background-color: var(--background-alt);
-}
 
 /* ==========================================
    END OF STYLESHEET 
